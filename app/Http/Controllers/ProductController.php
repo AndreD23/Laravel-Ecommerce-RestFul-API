@@ -122,6 +122,16 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        try{
+            $product->delete();
+        } catch(\Exception $e){
+            return response([
+                "data" => "Unable to Delete Product"
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        return response([
+            "data" => "Product deleted"
+        ], Response::HTTP_NO_CONTENT);
     }
 }
