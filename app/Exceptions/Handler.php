@@ -49,11 +49,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-
+        //Verifica se a request está esperando um retorno de json,
+        // ou seja, se é uma api
         if($request->expectsJson()){
-
             return $this->apiException($request, $exception);
-
         }
 
         return parent::render($request, $exception);
