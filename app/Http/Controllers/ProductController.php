@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Product;
 use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\Product\ProductResource;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use App\Exceptions\ProductNotBelongsToUserException;
 

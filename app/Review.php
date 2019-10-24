@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Review extends Model
 {
-    
     use SoftDeletes;
 
     protected $table = 'reviews';
@@ -24,5 +23,4 @@ class Review extends Model
     public function product(){
         return $this->belongsTo(Product::class);
     }
-
 }
