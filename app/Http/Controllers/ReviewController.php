@@ -32,12 +32,13 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param Product $product
+     * @return Product
      */
-    public function store(Request $request)
+    public function store(Request $request, Product $product)
     {
-        //
+        return $product;
     }
 
     /**
