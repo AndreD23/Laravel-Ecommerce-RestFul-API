@@ -76,19 +76,41 @@ class ReviewController extends Controller
      * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(Request $request, Product $product, Review $review)
     {
-        //
+        try{
+            $review->update($request->all());
+        } catch (\Exception $e){
+            return response([
+                "data" => "Unable to Update Review"
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        return response([
+            'data' => new ReviewResource($review)
+        ], Response::HTTP_CREATED);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Review  $review
+     * @param Product $product
+     * @param Review $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Product $product, Review $review)
     {
-        //
+        try{
+            $review->where('product_id', $product->id)
+                ->delete();
+        } catch(\Exception $e){
+            return response([
+                "data" => "Unable to Delete Review"
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        return response([
+            "data" => "Review deleted"
+        ], Response::HTTP_NO_CONTENT);
     }
 }
